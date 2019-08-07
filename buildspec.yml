@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
         #執行AWS認證
-      - $(aws ecr get-login --no-include-email --registry-ids 204065533127  --region ap-northeast-1)
+      - $(aws ecr get-login --no-include-email --region-ids 204065533127 ap-northeast-1)
   build:
     commands:
       - echo Build started on `date`
@@ -19,4 +19,4 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
         #從ECR中最新版本的Dockerfile
-      - docker push 204065533127.dkr.ecr.ap-northeast-1.amazonaws.com/project01-repo:latest
+      - docker push 204065533127.dkr.ecr.ap-northeast-1.amazonaws.com/project01-repo
