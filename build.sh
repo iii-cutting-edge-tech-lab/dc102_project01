@@ -1,7 +1,7 @@
 set -ex
 #set registry
 #USERNAME= ECR 的位置
-USERNAME=204065533127.dkr.ecr.ap-northeast-1.amazonaws.com
+USERNAME= 204065533127.dkr.ecr.ap-northeast-1.amazonaws.com
 # image name
 #IMAGE= Repo name
 IMAGE=project01-repo
