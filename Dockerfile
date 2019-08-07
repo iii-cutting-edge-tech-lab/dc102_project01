@@ -7,7 +7,7 @@ WORKDIR /app
 
 # install flask
 RUN pip install -r requirements.txt
-
+RUN pip install -r requirements.txt
 # run flask
 #ENTRYPOINT ["python"]
 #CMD ["test_flask.py"]

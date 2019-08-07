@@ -1,6 +1,4 @@
 # 用 flask 建立上傳環境
-import os
-import datetime
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from variable import send_message
