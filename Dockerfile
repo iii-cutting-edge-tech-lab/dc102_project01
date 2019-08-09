@@ -5,3 +5,6 @@ RUN pip install awscli
 RUN pip install flask
 RUN pip install pytz
 RUN pip install flask_table
+ENTRYPOINT ["python"]
+CMD ["web.ipynb"]
+
