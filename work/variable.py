@@ -5,32 +5,26 @@ tableName = 'vcloudlab_picture'
 bucketName = 'vcloudlab_bucket'
 queueName = 'vcloudlab_sqs_queue'
 
-s3_endpoint_url = 'http://s3.vcloudlab.pro:4569'
-sqs_endpoint_url = 'http://sqs.vcloudlab.pro:9324'
-dynamoDB_endpoint_url = 'http://dynamodb.vcloudlab.pro:8000'
+#s3_endpoint_url = 'http://s3.vcloudlab.pro:4569'
+#sqs_endpoint_url = 'http://sqs.vcloudlab.pro:9324'
+#dynamoDB_endpoint_url = 'http://dynamodb.vcloudlab.pro:8000'
 
-baseURL = "http://s3.vcloudlab.pro:4569/s3/vcloudlab_bucket/"
+baseURL = "https://vcloudlab-bucket.s3-ap-northeast-1.amazonaws.com/"
 
 s3_client = boto3.client(
-    's3',
-    endpoint_url = s3_endpoint_url)
+    's3')
 s3_resource = boto3.resource(
-    's3',
-    endpoint_url = s3_endpoint_url)
+    's3')
 
 sqs_client = boto3.client(
-    'sqs',
-    endpoint_url = sqs_endpoint_url)
+    'sqs')
 sqs_resource = boto3.resource(
-    'sqs',
-    endpoint_url = sqs_endpoint_url)
+    'sqs')
 
 dynamoDB_client = boto3.client(
-    'dynamodb',
-    endpoint_url = dynamoDB_endpoint_url)
+    'dynamodb')
 dynamoDB_resource = boto3.resource(
-    'dynamodb',
-    endpoint_url = dynamoDB_endpoint_url)
+    'dynamodb')
 
 # function
 def send_message(filename):
@@ -47,4 +41,3 @@ def send_message(filename):
     )
     # print('Message ID : ',enqueue_response['MessageId'])
     return True
-    
