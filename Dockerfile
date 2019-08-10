@@ -3,7 +3,7 @@ FROM python:3.6
 
 # add project
 COPY ./work /work/
-COPY ./.aws /.aws/
+#COPY ./.aws /.aws/
 WORKDIR /work
 
 # install flask
@@ -20,9 +20,9 @@ RUN pip install pytz
 #RUN /bin/bash -c 'python test_flask.py'
 
 # run flask
-ENV AWS_ACCESS_KEY_ID=AKIAS7A2A5TDS377W32G
-ENV AWS_SECRET_ACCESS_KEY=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
-ENV  AWS_DEFAULT_REGION=ap-northeast-1
+ENV AWS_ACCESS_KEY_ID=
+ENV AWS_SECRET_ACCESS_KEY=
+ENV AWS_DEFAULT_REGION=ap-northeast-1
 ENTRYPOINT ["python"]
 CMD ["web.py"]
 
