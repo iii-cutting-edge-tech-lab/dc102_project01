@@ -10,7 +10,6 @@ RUN pip install flask
 RUN pip install PyMySQL
 RUN pip install boto3
 RUN pip install awscli
-RUN pip install flask
 RUN pip install pytz
  
  
@@ -23,5 +22,5 @@ RUN /bin/bash -c 'python test_flask.py'
  
 # 運行flask 
 ENTRYPOINT ["python"] 
-CMD python app.py 
+CMD python web.ipynb 
  
