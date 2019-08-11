@@ -2,11 +2,10 @@
 FROM python:3.6
 
 # add project
-COPY  ./work /work/
+COPY ./work /work/
 WORKDIR /work
 
-# install flask
-RUN pip install -r requirements.txt
+# install 
 RUN pip install PyMySQL
 RUN pip install boto3
 RUN pip install awscli
@@ -22,4 +21,5 @@ ENV AWS_ACCESS_KEY_ID=
 ENV AWS_SECRET_ACCESS_KEY=
 ENV AWS_DEFAULT_REGION=ap-northeast-1
 ENTRYPOINT ["python"]
-CMD ["web.py"]
+CMD ["app.py"]
+
