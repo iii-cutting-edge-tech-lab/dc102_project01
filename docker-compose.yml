@@ -1,14 +1,5 @@
 version: '3'
 services:
-#  jupyter-tutorial:
-#    build: .
-#    container_name: jupyter.vcloudlab.pro
-#    ports:
-#      - "8888:8888"
-#    volumes:
-#      - ./work/:/home/jovyan/work/
-    #  - /home/user/.aws/:/home/jovyan/.aws/
-#    command: start-notebook.sh --NotebookApp.token=''
   dynamoDB:
     image: instructure/dynamo-local-admin
     container_name: dynamodb.vcloudlab.pro
