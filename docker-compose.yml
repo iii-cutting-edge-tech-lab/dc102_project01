@@ -20,8 +20,13 @@ services:
       - "4569:4569"
     volumes:
       - ./pic/:/fakes3_root
-  python:
-    build: .
-    container_name: flask
+
+  flask-web:
+    build: flask/.
+    container_name: flask-web
     ports:
       - "80:5000"
+
+  worker:
+    build: worker/.
+    container_name: worker
