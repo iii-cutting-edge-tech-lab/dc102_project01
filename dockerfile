@@ -18,8 +18,8 @@ RUN pip install pytz
 #RUN /bin/bash -c 'python test_flask.py'
 
 # run flask
-ENV AWS_ACCESS_KEY_ID=
-ENV AWS_SECRET_ACCESS_KEY=
+ENV AWS_ACCESS_KEY_ID=0
+ENV AWS_SECRET_ACCESS_KEY=0
 ENV AWS_DEFAULT_REGION=ap-northeast-1
 ENTRYPOINT ["python"]
 CMD ["web.py"]

@@ -5,19 +5,42 @@ import boto3
 bucketName = 'vcloudlab-bucket'
 queueName = 'vcloudlab_sqs_queue'
 tableName = 'vcloudlab_picture'
-baseURL = "https://vcloudlab-bucket.s3-ap-northeast-1.amazonaws.com/"
+s3_endpoint_url = 'http://s3.vcloudlab.pro:4569'
+sqs_endpoint_url = 'http://sqs.vcloudlab.pro:9324'
+baseURL = "http://s3.vcloudlab.pro:4569/s3/vcloudlab_bucket/"
+#連線服務
+s3_client = boto3.client(
+    's3',
+    endpoint_url = s3_endpoint_url)
+s3_resource = boto3.resource(
+    's3',
+    endpoint_url = s3_endpoint_url)
 
+sqs_client = boto3.client(
+    'sqs',
+    endpoint_url = sqs_endpoint_url)
+sqs_resource = boto3.resource(
+    'sqs',
+    endpoint_url = sqs_endpoint_url)
 
-# 服務連線
-sqs_resource = boto3.resource('sqs')
-sqs_client = boto3.client('sqs')
-s3_client = boto3.client('s3')
-s3_resource = boto3.resource('s3')
+#創建服務
+s3_resource.create_bucket( Bucket = bucketName)
+sqs_client.create_queue(
+    QueueName = queueName)
 
-# 調用 SQS
+#調用服務
 vlabQueues = sqs_client.list_queues( QueueNamePrefix = queueName )
 queue_url = vlabQueues['QueueUrls'][0]
-print(queue_url)
+
+# function
+def send_message(filename):
+    # 將 filename 透過 SQS 傳輸
+    enqueue_response = sqs_client.send_message(
+        QueueUrl = queue_url,
+        MessageBody = filename
+    )
+    return True
+
 
 # 用 flask 建立上傳環境
 import os
@@ -25,28 +48,11 @@ import datetime
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-
 UPLOAD_FOLDER = 'pic/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = 'chickenleg'
-
-# function
-def send_message(filename):
-
-    # 調用 SQS
-    vlabQueues = sqs_client.list_queues( QueueNamePrefix = queueName )
-    queue_url = vlabQueues['QueueUrls'][0]
-    # print(queue_url)
-
-    # 將 filename 透過 SQS 傳輸
-    enqueue_response = sqs_client.send_message(
-        QueueUrl = queue_url,
-        MessageBody = filename
-    )
-    # print('Message ID : ',enqueue_response['MessageId'])
-    return True
 
 # 解析檔案名稱
 def allowed_file(filename):
