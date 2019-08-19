@@ -11,11 +11,6 @@ RUN pip install PyMySQL
 RUN pip install boto3
 RUN pip install awscli
 RUN pip install pytz
-# run flask
-#ENTRYPOINT ["python"]
-#CMD ["test_flask.py"]
-
-#RUN /bin/bash -c 'python test_flask.py'
 
 # run flask
 ENV AWS_ACCESS_KEY_ID=
